@@ -24,6 +24,14 @@ composer.phar
 # Mac DS_Store Files
 .DS_Store
 
+#cache no upload 
+Frontend/runtime
+Backend/runtime
+Console/runtime
+
+
+
+
 # phpunit itself is not needed
 phpunit.phar
 # local phpunit config
