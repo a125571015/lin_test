@@ -16,7 +16,7 @@ nbproject
 Thumbs.db
 
 # composer vendor dir
-/vendor
+#/vendor 2022/01/14 need upload edit Kevin
 
 # composer itself is not needed
 composer.phar

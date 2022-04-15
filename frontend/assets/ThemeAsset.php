@@ -42,7 +42,7 @@ class ThemeAsset extends AssetBundle
     public static function register($view)
     {
         $js = <<<JS
-            $('[data-toggle="tooltip"]').tooltip()
+           // $('[data-toggle="tooltip"]').tooltip()
 JS;
 
         $view->registerJs($js, View::POS_READY);

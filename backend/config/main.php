@@ -52,10 +52,13 @@ return [
         ],
         'assetManager' => [
             'bundles' => [
-                'yii\bootstrap\BootstrapAsset' => [
-                    'sourcePath' => '@yeesoft/yii2-yee-core/assets/theme/bootswatch/custom',
-                    'css' => ['bootstrap.css']
-                ],
+                // 'yii\bootstrap\BootstrapAsset' => [
+                //     'sourcePath' => '@yeesoft/yii2-yee-core/assets/theme/bootswatch/custom',
+                //     'css' => ['bootstrap.css']
+                // ],
+                'yii\web\JqueryAsset' => false,
+                'yii\bootstrap\BootstrapPluginAsset' => false,
+                'yii\bootstrap\BootstrapAsset' => false,
             ],
         ],
         'urlManager' => [
@@ -69,6 +72,13 @@ return [
                 //'<controller:(test)>/<id:\d+>' => '<controller>/view',
                 //'<controller:(test)>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 //'<controller:(test)>/<action:\w+>' => '<controller>/<action>',
+
+                '<controller:(login|character|skill)>/<id:\d+>' => '<controller>/view',
+                '<controller:(login|character|skill)>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:(login|character|skill)>/<action:\w+>' => '<controller>/<action>',
+
+
+
                 //yee cms and other modules routes
                 '<module:\w+>/' => '<module>/default/index',
                 '<module:\w+>/<action:\w+>/<id:\d+>' => '<module>/default/<action>',

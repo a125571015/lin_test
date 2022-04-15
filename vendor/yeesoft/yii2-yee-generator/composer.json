@@ -1,0 +1,17 @@
+{
+    "name": "yeesoft/yii2-yee-generator",
+    "description": "Yee Gii Generators",
+    "type": "yii2-extension",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "YeeSoft",
+            "email": "makitrataras@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "yeesoft\\generator\\": ""
+        }
+    }
+}

@@ -1,33 +1,52 @@
 <?php
+use yii\web\View;
 
-use yii\widgets\LinkPager;
 
-/* @var $this yii\web\View */
-
-$this->title = 'Homepage';
 ?>
-<div class="site-index">
 
-    <?php if (Yii::$app->getRequest()->getQueryParam('page') <= 1) : ?>
-        <div class="jumbotron">
-            <h1>Congratulations!</h1>
+<style>
+    /*h1, h5 {*/
+    /*    text-align: center;*/
+    /*}*/
 
-            <p class="lead">You have successfully created your Yii-powered application.</p>
+    /*h5 {*/
+    /*    color: grey;*/
+    /*}*/
 
-            <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-        </div>
-    <?php endif; ?>
+    /*.more-courses {*/
+    /*    position: relative;*/
+    /*    top: 50%;*/
+    /*    left: 50%;*/
+    /*    transform: translate(-50%, -50%);*/
+    /*}*/
 
-    <div class="body-content">
+    /*.navbar {*/
+    /*    position: fixed !important;*/
+    /*    top: 0px;*/
+    /*}*/
+</style>
 
-        <?php /* @var $post yeesoft\post\models\Post */ ?>
-        <?php foreach ($posts as $post) : ?>
-            <?= $this->render('/items/post.php', ['post' => $post, 'page' => 'index']) ?>
-        <?php endforeach; ?>
 
-        <div class="text-center">
-            <?= LinkPager::widget(['pagination' => $pagination]) ?>
-        </div>
+
+<!-- Page Content -->
+<div class="container">
+
+
+    <div>
+        <H1>123456677</H1>
 
     </div>
+    <br>
+    <br>
+
+    <!-- 關於我們 -->
+
+
+    <br>
+
+
+
 </div>
+<!-- /.container -->
+
+

@@ -14,9 +14,12 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use yeesoft\comment\widgets\RecentComments;
 
+
 Yii::$app->assetManager->forceCopy = true;
 AppAsset::register($this);
 ThemeAsset::register($this);
+$ver          = Yii::$app->params['ver'];
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -24,6 +27,24 @@ ThemeAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- test favicon-->
+    <link rel="shortcut icon" href="<?= Yii::$app->homeUrl ?>admin/favicon.ico?v=<?= $ver ?>">
+
+    <!-- App css -->
+    <link href="<?= Yii::$app->homeUrl ?>./material/css/bootstrap.min.css?v=<?= $ver ?>" rel="stylesheet" type="text/css"/>
+    <link href="<?= Yii::$app->homeUrl ?>./material/css/icons.css?v=<?= $ver ?>" rel="stylesheet" type="text/css"/>
+    <link href="<?= Yii::$app->homeUrl ?>./material/css/style.css?v=<?= $ver ?>" rel="stylesheet" type="text/css"/>
+
+    <!--font awesome6  css-->
+    <link href="<?= Yii::$app->homeUrl ?>./material/plugins/fontawesome/css/all.css?v=<?= $ver ?>" rel="stylesheet" type="text/css"/>
+
+
+
+
+
+
     <?= Html::csrfMetaTags() ?>
     <?= $this->renderMetaTags() ?>
     <?php $this->head() ?>
@@ -31,77 +52,67 @@ ThemeAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->settings->get('general.title', 'Yee Site', Yii::$app->language),
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    $menuItems = Menu::getMenuItems('main-menu');
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => Yii::t('yee/auth', 'Signup'), 'url' => \yii\helpers\Url::to(['/auth/default/signup'])];
-        $menuItems[] = ['label' => Yii::t('yee/auth', 'Login'), 'url' => ['/auth/default/login']];
-    } else {
-        $menuItems[] = [
-            'label' => Yii::$app->user->identity->username,
-            'url' => ['/auth/default/profile'],
-        ];
 
-        $menuItems[] = [
-            'label' => Yii::t('yee/auth', 'Logout'),
-            'url' => ['/auth/default/logout', 'language' => false],
-            'linkOptions' => ['data-method' => 'post']
-        ];
-    }
-    echo Nav::widget([
-        'encodeLabels' => false,
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
+<div >
 
-    echo LanguageSelector::widget(['display' => 'label', 'view' => 'pills']);
 
-    NavBar::end();
-    ?>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="hidden-xs">
-                    <?php
-                        $menuItemsKey = '__mainMenuItems' . Yii::$app->language;
-                        if(!$menuItems = Yii::$app->cache->get($menuItemsKey)){
-                            $menuItems = Menu::getMenuItems('main-menu');
-                            Yii::$app->cache->set($menuItemsKey, $menuItems, 3600);
-                        }
-                    
-                        echo Navigation::widget([
-                            'encodeLabels' => false,
-                            'items' => $menuItems,
-                            'options' => [
-                                ['class' => 'nav nav-pills nav-stacked'],
-                                ['class' => 'nav nav-second-level'],
-                                ['class' => 'nav nav-third-level']
-                            ],
-                        ]);
-                    ?>
-                </div>
-                
-                <div>
-                    <?= RecentComments::widget() ?>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <?= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []]) ?>
-                <?= Alert::widget() ?>
-                <?= $content ?>
-            </div>
+<!--    navbar 前台開始-->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">賽馬娘玩家攻略網</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/site/index">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+
+                    <a class="nav-link" href="#">角色</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">賽程</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">支援卡</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="/auth/default/login" tabindex="-1" aria-disabled="true">登入</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
-    </div>
+    </nav>
+    <!--    navbar 前台結束-->
+
 </div>
+
+
+
+<!-- view 內容開始-->
+<?php echo $content ?>
+<!-- view 內容結束-->
+
+
 
 <footer class="footer">
     <div class="container">
@@ -111,7 +122,27 @@ ThemeAsset::register($this);
     </div>
 </footer>
 
+<!-- jQuery  -->
+<script src="<?= Yii::$app->homeUrl ?>./material/js/jquery.min.js?v=<?= $ver ?>"></script>
+<script src="<?= Yii::$app->homeUrl ?>./material/js/popper.min.js?v=<?= $ver ?>"></script>
+<script src="<?= Yii::$app->homeUrl ?>./material/js/bootstrap.min.js?v=<?= $ver ?>"></script>
+<script src="<?= Yii::$app->homeUrl ?>./material/js/modernizr.min.js?v=<?= $ver ?>"></script>
+
+<script src="<?= Yii::$app->homeUrl ?>./material/js/jquery.slimscroll.js?v=<?= $ver ?>"></script>
+<script src="<?= Yii::$app->homeUrl ?>./material/js/jquery.nicescroll.js?v=<?= $ver ?>"></script>
+<script src="<?= Yii::$app->homeUrl ?>./material/js/jquery.scrollTo.min.js?v=<?= $ver ?>"></script>
+
+<!--font awesome6  jquery-->
+<script defer src="<?= Yii::$app->homeUrl ?>./material/plugins/fontawesome/js/all.js?v=<?= $ver ?>"></script>
+
+
+
+
+
 <?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>
+
+
+
